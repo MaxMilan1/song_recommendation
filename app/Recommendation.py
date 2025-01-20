@@ -1,4 +1,5 @@
 import streamlit as st
+from clustering import *
 
 def main():
     # Set page title
@@ -69,6 +70,13 @@ def main():
     st.subheader("Your Selection")
     st.write(f"**Activity:** {activity}")
     st.write(f"**Weather Condition:** {weather_code}")
+
+    st.subheader("Recommended playlist")
+
+    # Define the recommended playlist for each activity and weather condition
+    data = (activity, weather_code)
+
+    
 
 if __name__ == "__main__":
     main()
