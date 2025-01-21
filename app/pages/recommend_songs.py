@@ -66,15 +66,14 @@ def main():
         [f"{desc}" for code, desc in weather_codes.items()]
     )
 
-    # Display the selected activity and weather
-    st.subheader("Your Selection")
-    st.write(f"**Activity:** {activity}")
-    st.write(f"**Weather Condition:** {weather_code}")
+    weather_code_to_num = {desc: code for code, desc in weather_codes.items()}
+    weather_code = weather_code_to_num[weather_code]
 
-    st.subheader("Recommended playlist")
+    st.subheader("Recommended songs")
 
     # Define the recommended playlist for each activity and weather condition
-    data = recommendation(activity, weather_code)
+    songs = recommendation(activity, weather_code)
+    st.dataframe(songs)
 
 
     
