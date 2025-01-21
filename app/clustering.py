@@ -31,7 +31,7 @@ def get_all_songs(cluster):
 
     #change index to start from 1
     songs.index = np.arange(1, len(songs) + 1)
-    
+
     return songs
 
 def recommendation(activity, weather_code):
@@ -42,6 +42,24 @@ def recommendation(activity, weather_code):
     print("predicted cluster", predicted_cluster)
     songs = get_all_songs(predicted_cluster)
     return songs
+
+def get_playlist(activity, weather_code, playlist_length):
+    # Get the recommended songs
+    songs = recommendation(activity, weather_code)
+    
+    # Calculate the amount of songs needed based on the desired playlist length
+    amount_of_songs = playlist_length * 60 // 3
+
+    # If there aren't enough songs, sample with replacement
+    if len(songs) < amount_of_songs:
+        playlist = songs.sample(n=amount_of_songs, replace=True)
+    else:
+        playlist = songs.sample(n=amount_of_songs)
+
+    #change index to start from 1
+    playlist.index = np.arange(1, len(playlist) + 1)
+
+    return playlist.drop(columns=["Genre"])
 
 def encode_activity(activity):
     activities = [

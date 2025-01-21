@@ -1,4 +1,5 @@
 import streamlit as st
+from clustering import *
 
 
 def main():
@@ -78,11 +79,7 @@ def main():
 
     st.subheader("Generated Playlist")
     playlist = get_playlist(activity, weather_code, playlist_length)
-
-def save_playlist(playlist_name):
-    # Example: Save playlist data to a CSV or database
-    # This function needs to be implemented based on your data storage choice
-    pass
+    st.dataframe(playlist)
 
 if __name__ == "__main__":
     main()
