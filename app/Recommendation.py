@@ -74,7 +74,8 @@ def main():
     st.subheader("Recommended playlist")
 
     # Define the recommended playlist for each activity and weather condition
-    data = (activity, weather_code)
+    data = recommendation(activity, weather_code)
+
 
     
 
