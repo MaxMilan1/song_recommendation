@@ -84,3 +84,12 @@ def encode_activity(activity):
     label_encoder_type.fit(activities)
 
     return label_encoder_type.transform([activity])[0]
+
+def recommendation_split(activity,weather_code):
+    encoded_activity = encode_activity(activity)
+    print("activity encoded", encoded_activity)
+    data = [[encoded_activity, weather_code]]
+    predicted_cluster = get_clusters(data)
+    print("predicted cluster", predicted_cluster)
+    songs = get_all_songs(predicted_cluster)
+    return encode_activity,data, predicted_cluster, songs
